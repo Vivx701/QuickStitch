@@ -1,2 +1,2 @@
 # QuickStitch
-SImple image stitching program
+Simple image stitching program written in Qt5 C++
