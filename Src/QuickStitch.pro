@@ -25,15 +25,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        quickstitchgui.cpp \
     imagestitcher.cpp \
-    stitchdialog.cpp
+    stitchdialog.cpp \
+    quickstitchwindow.cpp
 
 HEADERS += \
-        quickstitchgui.h \
     imagestitcher.h \
-    stitchdialog.h
+    stitchdialog.h \
+    quickstitchwindow.h
 
 FORMS += \
-        quickstitchgui.ui \
-    stitchdialog.ui
+    stitchdialog.ui \
+    quickstitchwindow.ui
