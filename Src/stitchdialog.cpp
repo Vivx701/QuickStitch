@@ -3,6 +3,7 @@
 #include <QFileDialog>
 #include <QImageWriter>
 #include <QMessageBox>
+#include <QDebug>
 #include "stitchdialog.h"
 #include "ui_stitchdialog.h"
 
@@ -11,6 +12,7 @@ StitchDialog::StitchDialog(QWidget *parent) :
     ui(new Ui::StitchDialog), bgColor("#FBFBFC"), finalImageSize(0, 0)
 {
     ui->setupUi(this);
+
     connect(ui->bgColorValue, SIGNAL(textChanged(QString)), this, SLOT(onBgColorValueTextChanged(QString)));
     connect(ui->chooseColorButton, SIGNAL(clicked(bool)), this, SLOT(onChooseColor()));
     connect(ui->filenameChoose, SIGNAL(clicked(bool)), this, SLOT(onChooseFileName()));
@@ -66,11 +68,25 @@ void StitchDialog::onChooseColor()
 
 void StitchDialog::onChooseFileName()
 {
-    QString fileName =  QFileDialog::getSaveFileName(this, "Save Image", "stich","jpg (*.jpg);;png(*.png);;");
+    QString *selectedFilter = new QString();
+    QString fileName =  QFileDialog::getSaveFileName(this, "Save Image", "stich","jpg(*.jpg);;png(*.png);;", selectedFilter);
     if(fileName.isEmpty()){
         return;
     }
-    saveFileName = fileName;
+    qDebug()<<selectedFilter->toLatin1();
+    QString selExt = ".jpg";
+    if(selectedFilter->compare("jpg(*.jpg)") == 0){
+        selExt = ".jpg";
+    }else if(selectedFilter->compare("png(*.png)") == 0){
+        selExt = ".png";
+    }
+
+    if(!fileName.endsWith(selExt)){
+
+        saveFileName = fileName+selExt;
+    }
+
+
     ui->selectedPath->setText(saveFileName);
     updateDetails();
 }
@@ -88,7 +104,7 @@ void StitchDialog::updateDetails()
                       "Background: %2\n"
                       "Type: %3\n"
                       "Size: %4\n"
-                       "Count: %5";
+                      "Count: %5";
     QString size = QString::number(finalImageSize.width())+" X "+QString::number(finalImageSize.height());
     ui->outputLabel->setText(details.arg(saveFileName).arg(bgColor.name().toUpper()).arg(selectedType).arg(size).arg(QString::number(m_stitcher->getImageList().length())));
 
