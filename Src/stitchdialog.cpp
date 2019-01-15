@@ -11,17 +11,19 @@ StitchDialog::StitchDialog(QWidget *parent) :
     ui(new Ui::StitchDialog), bgColor("#FBFBFC"), finalImageSize(0, 0)
 {
     ui->setupUi(this);
-    connect(ui->bgColorValue, SIGNAL(textChanged(QString)), this, SLOT(onBgColorValueTextChanged(QString)));
+
     connect(ui->chooseColorButton, SIGNAL(clicked(bool)), this, SLOT(onChooseColor()));
     connect(ui->filenameChoose, SIGNAL(clicked(bool)), this, SLOT(onChooseFileName()));
     connect(ui->typeSelection, SIGNAL(currentTextChanged(QString)), this, SLOT(onTypeSelected(QString)));
     connect(ui->startButton, SIGNAL(clicked(bool)) , this, SLOT(onStartButtonClicked()));
     ui->bgColorValue->setText(bgColor.name().toUpper());
     selectedType = ui->typeSelection->currentText();
-    updateDetails();
+
     m_stitcher = new ImageStitcher(this);
     connect(m_stitcher, SIGNAL(progressChanged(int,int)), this, SLOT(onProgressChange(int,int)));
     connect(m_stitcher, SIGNAL(finalImageSizeChanged(QSize)), this, SLOT(onFinalImageSizeChanged(QSize)));
+    connect(ui->bgColorValue, SIGNAL(textEdited(QString)), this, SLOT(onBgColorValueTextChanged(QString)));
+    updateDetails();
 }
 
 void StitchDialog::addImages(ImageList imgList)
