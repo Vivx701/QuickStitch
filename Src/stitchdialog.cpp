@@ -68,7 +68,7 @@ void StitchDialog::onChooseColor()
 
 void StitchDialog::onChooseFileName()
 {
-    QString fileName =  QFileDialog::getSaveFileName(this, "Save Image", "stich","jpg (*.jpg);;png(*.png);;");
+    QString fileName =  QFileDialog::getSaveFileName(this, "Save Image", "Unnamed.jpg","jpg(*.jpg);;png(*.png);;", new QString("jpg(*.jpg)"), QFileDialog::DontUseNativeDialog);
     if(fileName.isEmpty()){
         return;
     }

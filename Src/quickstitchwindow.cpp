@@ -2,7 +2,8 @@
 #include <QMessageBox>
 #include <QListWidgetItem>
 #include <QList>
-
+#include <QDateTime>
+#include <QPixmap>
 #include "quickstitchwindow.h"
 #include "ui_quickstitchwindow.h"
 #include "stitchdialog.h"
@@ -37,8 +38,9 @@ void QuickStitchWindow::onAddImageButtonClicked()
             showError("File not found", file+" file not found");
             continue;
         }
-
-        QListWidgetItem *item = new QListWidgetItem(QIcon(file), info.fileName(), ui->imageListWidget);
+        QPixmap pixImg(file);
+        QString fileDetails = QString(" %1     (%2X%3)").arg(info.fileName()).arg(pixImg.size().width()).arg(pixImg.size().height());
+        QListWidgetItem *item = new QListWidgetItem(QIcon(pixImg), fileDetails, ui->imageListWidget);
         item->setData(Qt::UserRole, info.filePath());
         ui->imageListWidget->addItem(item);
     }
