@@ -138,3 +138,12 @@ QPushButton:disabled{
     font-size:1px;
 
 }
+#ProgressDialog{
+    background-color:  #85929e;
+}
+#progressLabel{
+    color:  #ecf0f1;
+}
+#progressMessageLabel{
+    color:  #ecf0f1;
+}

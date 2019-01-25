@@ -5,7 +5,7 @@
 #include <QImage>
 #include <QList>
 #include <QColor>
-
+enum StitchType{ HORIZONTAL, VERTICAL};
 typedef QList<QImage> ImageList;
 class ImageStitcher : public QObject
 {
