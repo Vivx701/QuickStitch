@@ -37,3 +37,6 @@ HEADERS += \
 FORMS += \
     stitchdialog.ui \
     quickstitchwindow.ui
+
+RESOURCES += \
+    resources.qrc
