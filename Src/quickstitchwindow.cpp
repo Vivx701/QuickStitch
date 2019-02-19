@@ -6,7 +6,6 @@
 #include <QPixmap>
 #include <QImageWriter>
 #include "quickstitchwindow.h"
-#include "progressdialog.h"
 #include "ui_quickstitchwindow.h"
 
 QuickStitchWindow::QuickStitchWindow(QWidget *parent) :

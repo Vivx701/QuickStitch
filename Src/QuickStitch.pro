@@ -27,16 +27,16 @@ SOURCES += \
         main.cpp \
     imagestitcher.cpp \
     quickstitchwindow.cpp \
-    progressdialog.cpp
+    stitchdialog.cpp
 
 HEADERS += \
     imagestitcher.h \
     quickstitchwindow.h \
-    progressdialog.h
+    stitchdialog.h
 
 FORMS += \
     quickstitchwindow.ui \
-    progressdialog.ui
+    stitchdialog.ui
 
 RESOURCES += \
     resources.qrc

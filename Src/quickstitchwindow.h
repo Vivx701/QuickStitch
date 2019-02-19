@@ -4,7 +4,6 @@
 #include <QMainWindow>
 #include <QColor>
 #include <QColorDialog>
-#include "imagestitcher.h"
 
 namespace Ui {
 class QuickStitchWindow;
@@ -21,7 +20,7 @@ public:
 
 private:
     Ui::QuickStitchWindow *ui;
-    ImageStitcher *stitcher;
+
     QColor bgColor;
 
 private slots:

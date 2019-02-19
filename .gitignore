@@ -1,3 +1,4 @@
 *.save 
 .directory
 Src/*.user
+build*
