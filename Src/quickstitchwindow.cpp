@@ -7,13 +7,13 @@
 #include <QImageWriter>
 #include "quickstitchwindow.h"
 #include "ui_quickstitchwindow.h"
+#include "stitchdialog.h"
 
 QuickStitchWindow::QuickStitchWindow(QWidget *parent) :
     QMainWindow(parent),bgColor("#FBFBFC"),
     ui(new Ui::QuickStitchWindow)
 {
     ui->setupUi(this);
-    stitcher = new ImageStitcher(this);
     ui->imageListWidget->setIconSize(QSize(100, 100));
     connect(ui->actionAddImages, SIGNAL(triggered(bool)), this, SLOT(onAddImageButtonClicked()));
     connect(ui->actionRemoveImages, SIGNAL(triggered(bool)), this,SLOT(onRemoveImageButtonClicked()));
@@ -128,7 +128,12 @@ void QuickStitchWindow::onHStitchButtonClicked()
         return;
     }
     ImageList imgList = getImageList();
-    startStich(imgList, HORIZONTAL);
+    StitchDialog stitchDialog;
+    stitchDialog.setFixedSize(574, 128);
+    stitchDialog.addImages(imgList);
+    stitchDialog.setBgColor(bgColor);
+    stitchDialog.exec();
+
 }
 
 void QuickStitchWindow::onVStitchButtonClicked()
@@ -148,30 +153,31 @@ void QuickStitchWindow::onChooseColor()
     if(selectedColor.isValid()){
         bgColor = selectedColor;
     }
+
 }
 
 void QuickStitchWindow::startStich(ImageList imgList, StitchType type)
 {
 
-    QImage img;
-    stitcher->addImages(imgList);
-    switch (type) {
-    case VERTICAL:
-        img = stitcher->verticalStitch(bgColor);
-        break;
-    case HORIZONTAL:
-        img = stitcher->horizontalStitch(bgColor);
-        break;
-    default:
-        break;
-    }
-    QString saveFileName = "test.jpg";
-    QImageWriter imageWriter( saveFileName );
-    if(imageWriter.write(img)){
-        QMessageBox::about(this, "finish",  " image saved "+ saveFileName);
-    }else{
-        QMessageBox::about(this, "finish",  imageWriter.errorString());
-    }
+//    QImage img;
+
+//    switch (type) {
+//    case VERTICAL:
+//        img = stitcher->verticalStitch(bgColor);
+//        break;
+//    case HORIZONTAL:
+//        img = stitcher->horizontalStitch(bgColor);
+//        break;
+//    default:
+//        break;
+//    }
+//    QString saveFileName = "test.jpg";
+//    QImageWriter imageWriter( saveFileName );
+//    if(imageWriter.write(img)){
+//        QMessageBox::about(this, "finish",  " image saved "+ saveFileName);
+//    }else{
+//        QMessageBox::about(this, "finish",  imageWriter.errorString());
+//    }
 }
 
 void QuickStitchWindow::showErrorMessage(QString heading, QString message)

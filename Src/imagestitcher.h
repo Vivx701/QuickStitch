@@ -6,6 +6,7 @@
 #include <QList>
 #include <QColor>
 enum StitchType{ HORIZONTAL, VERTICAL};
+enum IMAGEFORMAT{JPG, PNG, BMP};
 typedef QList<QImage> ImageList;
 class ImageStitcher : public QObject
 {
@@ -22,7 +23,6 @@ public:
     void addImage(QString location);
     QImage horizontalStitch(QColor bgColor=Qt::white);
     QImage verticalStitch(QColor bgColor=Qt::white);
-
     ImageList getImageList() const;
 
 signals:

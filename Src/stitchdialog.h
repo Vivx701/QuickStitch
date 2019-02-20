@@ -2,6 +2,8 @@
 #define STITCHDIALOG_H
 
 #include <QDialog>
+#include <QColor>
+
 #include "imagestitcher.h"
 namespace Ui {
 class StitchDialog;
@@ -16,9 +18,19 @@ public:
     void addImages(ImageList imgList);
     ~StitchDialog();
 
+    void setBgColor(const QColor &value);
+
+private slots:
+    void onSaveButtonClicked();
+    void onBrowseButtonClicked();
+    void onProgresChanged(int maximum, int value);
+
+
 private:
     Ui::StitchDialog *ui;
     ImageStitcher *stitcher;
+    QColor bgColor;
+
 };
 
 #endif // STITCHDIALOG_H
