@@ -5,8 +5,8 @@
     font-family:Arial;
     font-size:15px;
     font-weight:bold;
-    padding:4px 24px;
-    background-color: #ECF0F1;
+    padding:10px 10px;
+    background-color: qlineargradient(spread:pad, x1:0.308, y1:0.21, x2:1, y2:0.994318, stop:0 rgba(255, 255, 255, 255), stop:0.672316 rgba(237, 237, 237, 255));
 }
 
 #QuickStitchWindow QToolButton:hover{
@@ -14,136 +14,35 @@
     border-top-color: transparent;
     border-right-color: transparent;
     border-left-color: transparent;
-    border-bottom-color: #5DADE2;
     border-style: solid;
     color:#666666;
-    background-color: #FDFEFE;
+    background-color: #fbfcfc;
 }
 
 #QuickStitchWindow QToolBar {
 
-    background-color: #34495E;
+    background-color:  #34495e ;
     spacing: 0px;
     padding: 10px 10px;
 }
 
-#stitchButton{
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 1px;
-    color: #FDFEFE;
+
+
+#hStitchButton, #vStitchButton{
+    border: 1px solid #bbb;
+    background-color: qlineargradient(spread:pad, x1:0.308, y1:0.21, x2:1, y2:0.994318, stop:0 rgba(255, 255, 255, 255), stop:0.672316 rgba(237, 237, 237, 255));
+    color:  #273746;
     padding:10px 24px ;
-    background-color: #34495E;
-
-    font-family:Arial;
-    font-size:15px;
-    font-weight:bold;
 }
 
-#stitchButton:hover{
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 1px;
-    color: #FDFEFE;
-    padding:10px 24px ;
-    background-color: #5D6D7E;
-
-    font-family:Arial;
-    font-size:15px;
-    font-weight:bold;
+#saveButton, #browseButton{
+    border: 1px solid #bbb;
+    background-color: qlineargradient(spread:pad, x1:0.308, y1:0.21, x2:1, y2:0.994318, stop:0 rgba(255, 255, 255, 255), stop:0.672316 rgba(237, 237, 237, 255));
+    color:  #273746;
+    padding:10px 15px ;
+}
+#hStitchButton:hover, #vStitchButton:hover, #saveButton:hover, #browseButton:hover{
+     background-color: #fbfcfc
 }
 
-QPushButton{
-    border-style: solid;
-    border-top-color: qlineargradient(spread:pad, x1:0.5, y1:1, x2:0.5, y2:0, stop:0 rgb(215, 215, 215), stop:1 rgb(222, 222, 222));
-    border-right-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:1, y2:0.5, stop:0 rgb(217, 217, 217), stop:1 rgb(227, 227, 227));
-    border-left-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:1, y2:0.5, stop:0 rgb(227, 227, 227), stop:1 rgb(217, 217, 217));
-    border-bottom-color: qlineargradient(spread:pad, x1:0.5, y1:1, x2:0.5, y2:0, stop:0 rgb(215, 215, 215), stop:1 rgb(222, 222, 222));
-    border-width: 1px;
-    border-radius: 1px;
-    color: rgb(0,0,0);
-    padding: 5px;
-    background-color: rgb(255,255,255);
 
-    font-family:Arial;
-    font-size:10px;
-
-}
-
-QPushButton::default{
-
-    border-style: solid;
-    border-top-color: qlineargradient(spread:pad, x1:0.5, y1:1, x2:0.5, y2:0, stop:0 rgb(215, 215, 215), stop:1 rgb(222, 222, 222));
-    border-right-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:1, y2:0.5, stop:0 rgb(217, 217, 217), stop:1 rgb(227, 227, 227));
-    border-left-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:1, y2:0.5, stop:0 rgb(227, 227, 227), stop:1 rgb(217, 217, 217));
-    border-bottom-color: qlineargradient(spread:pad, x1:0.5, y1:1, x2:0.5, y2:0, stop:0 rgb(215, 215, 215), stop:1 rgb(222, 222, 222));
-    border-width: 1px;
-    border-radius: 1px;
-    color: rgb(0,0,0);
-    padding: 5px;
-    background-color: rgb(255,255,255);
-
-    font-family:Arial;
-    font-size:12px;
-
-}
-
-QPushButton:hover{
-    border-style: solid;
-    border-top-color: qlineargradient(spread:pad, x1:0.5, y1:1, x2:0.5, y2:0, stop:0 rgb(195, 195, 195), stop:1 rgb(222, 222, 222));
-    border-right-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:1, y2:0.5, stop:0 rgb(197, 197, 197), stop:1 rgb(227, 227, 227));
-    border-left-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:1, y2:0.5, stop:0 rgb(227, 227, 227), stop:1 rgb(197, 197, 197));
-    border-bottom-color: qlineargradient(spread:pad, x1:0.5, y1:1, x2:0.5, y2:0, stop:0 rgb(195, 195, 195), stop:1 rgb(222, 222, 222));
-    border-width: 1px;
-    border-radius: 1px;
-    color: rgb(0,0,0);
-    padding: 5px;
-    background-color: rgb(255,255,255);
-
-    font-family:Arial;
-    font-size:12px;
-
-}
-
-QPushButton:pressed{
-    border-style: solid;
-    border-top-color: qlineargradient(spread:pad, x1:0.5, y1:1, x2:0.5, y2:0, stop:0 rgb(215, 215, 215), stop:1 rgb(222, 222, 222));
-    border-right-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:1, y2:0.5, stop:0 rgb(217, 217, 217), stop:1 rgb(227, 227, 227));
-    border-left-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:1, y2:0.5, stop:0 rgb(227, 227, 227), stop:1 rgb(217, 217, 217));
-    border-bottom-color: qlineargradient(spread:pad, x1:0.5, y1:1, x2:0.5, y2:0, stop:0 rgb(215, 215, 215), stop:1 rgb(222, 222, 222));
-    border-width: 1px;
-    border-radius: 1px;
-    color: rgb(0,0,0);
-    padding: 5px;
-    background-color: rgb(142,142,142);
-
-    font-family:Arial;
-    font-size:12px;
-
-}
-
-QPushButton:disabled{
-    border-style: solid;
-    border-top-color: qlineargradient(spread:pad, x1:0.5, y1:1, x2:0.5, y2:0, stop:0 rgb(215, 215, 215), stop:1 rgb(222, 222, 222));
-    border-right-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:1, y2:0.5, stop:0 rgb(217, 217, 217), stop:1 rgb(227, 227, 227));
-    border-left-color: qlineargradient(spread:pad, x1:0, y1:0.5, x2:1, y2:0.5, stop:0 rgb(227, 227, 227), stop:1 rgb(217, 217, 217));
-    border-bottom-color: qlineargradient(spread:pad, x1:0.5, y1:1, x2:0.5, y2:0, stop:0 rgb(215, 215, 215), stop:1 rgb(222, 222, 222));
-    border-radius: 1px;
-    border-radius: 5px;
-    color: #808086;
-    padding: 5px;
-    background-color: rgb(142,142,142);
-
-    font-family:Arial;
-    font-size:1px;
-
-}
-#ProgressDialog{
-    background-color:  #85929e;
-}
-#progressLabel{
-    color:  #ecf0f1;
-}
-#progressMessageLabel{
-    color:  #ecf0f1;
-}
