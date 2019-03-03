@@ -8,7 +8,7 @@
 #include <QImageWriter>
 
 StitchDialog::StitchDialog(QWidget *parent) :
-    QDialog(parent),
+    QDialog(parent), sType(HORIZONTAL),
     ui(new Ui::StitchDialog)
 {
     ui->setupUi(this);
@@ -31,14 +31,28 @@ StitchDialog::~StitchDialog()
 
 void StitchDialog::onSaveButtonClicked()
 {
+    QString savePath = QDir::cleanPath(ui->savePathlineEdit->text());
+    if(savePath.isEmpty()){
 
+        QMessageBox::about(this, "failed to save",  "Empty file name to save");
+        return;
+    }
 
-    QImage img = stitcher->horizontalStitch(bgColor);
+    QImage img;
+    switch (sType) {
+    case HORIZONTAL:
+        img = stitcher->horizontalStitch(bgColor);
+        break;
+    case VERTICAL:
+        img = stitcher->verticalStitch(bgColor);
+        break;
+    default:
+        break;
+    }
 
-    ui->savePathlineEdit->setText(QDir::cleanPath("test.jpg"));
-    QImageWriter imageWriter("test.jpg");
+    QImageWriter imageWriter(savePath);
     if(imageWriter.write(img)){
-        QMessageBox::about(this, "finish",  " image saved "+ ui->savePathlineEdit->text());
+        QMessageBox::about(this, "finish",  " image saved "+savePath);
     }else{
         QMessageBox::about(this, "finish",  imageWriter.errorString());
     }
@@ -80,4 +94,9 @@ void StitchDialog::onProgresChanged(int maximum, int value)
 void StitchDialog::setBgColor(const QColor &value)
 {
     bgColor = value;
+}
+
+void StitchDialog::setStitchType(StitchType type)
+{
+    sType = type;
 }

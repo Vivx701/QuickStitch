@@ -128,11 +128,7 @@ void QuickStitchWindow::onHStitchButtonClicked()
         return;
     }
     ImageList imgList = getImageList();
-    StitchDialog stitchDialog;
-    stitchDialog.setFixedSize(574, 128);
-    stitchDialog.addImages(imgList);
-    stitchDialog.setBgColor(bgColor);
-    stitchDialog.exec();
+    startStich(imgList, HORIZONTAL);
 
 }
 
@@ -159,26 +155,16 @@ void QuickStitchWindow::onChooseColor()
 void QuickStitchWindow::startStich(ImageList imgList, StitchType type)
 {
 
-//    QImage img;
+    StitchDialog stitchDialog;
+    stitchDialog.setFixedSize(574, 128);
+    stitchDialog.addImages(imgList);
+    stitchDialog.setBgColor(bgColor);
+    stitchDialog.setStitchType(type);
+    stitchDialog.exec();
 
-//    switch (type) {
-//    case VERTICAL:
-//        img = stitcher->verticalStitch(bgColor);
-//        break;
-//    case HORIZONTAL:
-//        img = stitcher->horizontalStitch(bgColor);
-//        break;
-//    default:
-//        break;
-//    }
-//    QString saveFileName = "test.jpg";
-//    QImageWriter imageWriter( saveFileName );
-//    if(imageWriter.write(img)){
-//        QMessageBox::about(this, "finish",  " image saved "+ saveFileName);
-//    }else{
-//        QMessageBox::about(this, "finish",  imageWriter.errorString());
-//    }
 }
+
+
 
 void QuickStitchWindow::showErrorMessage(QString heading, QString message)
 {

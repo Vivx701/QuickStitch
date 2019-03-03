@@ -19,6 +19,7 @@ public:
     ~StitchDialog();
 
     void setBgColor(const QColor &value);
+    void setStitchType(StitchType type);
 
 private slots:
     void onSaveButtonClicked();
@@ -30,6 +31,7 @@ private:
     Ui::StitchDialog *ui;
     ImageStitcher *stitcher;
     QColor bgColor;
+    StitchType sType;
 
 };
 

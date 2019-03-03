@@ -1,4 +1,4 @@
-QToolButton {
+#QuickStitchWindow QToolButton{
     border-radius:0px;
     border:1px solid #dcdcdc;
     color:#666666;
@@ -9,7 +9,7 @@ QToolButton {
     background-color: #ECF0F1;
 }
 
-QToolButton:hover{
+#QuickStitchWindow QToolButton:hover{
     border-style: solid;
     border-top-color: transparent;
     border-right-color: transparent;
@@ -20,7 +20,7 @@ QToolButton:hover{
     background-color: #FDFEFE;
 }
 
-QToolBar {
+#QuickStitchWindow QToolBar {
 
     background-color: #34495E;
     spacing: 0px;
