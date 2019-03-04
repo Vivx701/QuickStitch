@@ -3,7 +3,6 @@
 
 #include <QDialog>
 #include <QColor>
-
 #include "imagestitcher.h"
 namespace Ui {
 class StitchDialog;
@@ -26,6 +25,8 @@ private slots:
     void onBrowseButtonClicked();
     void onProgresChanged(int maximum, int value);
 
+
+    void on_cancelButton_clicked();
 
 private:
     Ui::StitchDialog *ui;

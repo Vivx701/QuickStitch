@@ -7,6 +7,7 @@
 #include <QMessageBox>
 #include <QImageWriter>
 
+
 StitchDialog::StitchDialog(QWidget *parent) :
     QDialog(parent), sType(HORIZONTAL),
     ui(new Ui::StitchDialog)
@@ -56,6 +57,7 @@ void StitchDialog::onSaveButtonClicked()
     }else{
         QMessageBox::about(this, "finish",  imageWriter.errorString());
     }
+
 }
 
 void StitchDialog::onBrowseButtonClicked()
@@ -87,8 +89,8 @@ void StitchDialog::onBrowseButtonClicked()
 
 void StitchDialog::onProgresChanged(int maximum, int value)
 {
-    ui->stitchProgressBar->setMaximum(maximum);
-    ui->stitchProgressBar->setValue(value);
+    //ui->stitchProgressBar->setMaximum(maximum);
+    //ui->stitchProgressBar->setValue(value);
 }
 
 void StitchDialog::setBgColor(const QColor &value)
@@ -99,4 +101,9 @@ void StitchDialog::setBgColor(const QColor &value)
 void StitchDialog::setStitchType(StitchType type)
 {
     sType = type;
+}
+
+void StitchDialog::on_cancelButton_clicked()
+{
+    this->reject();
 }
