@@ -39,6 +39,7 @@ void StitchDialog::onSaveButtonClicked()
         return;
     }
 
+    qApp->setOverrideCursor(Qt::WaitCursor);
     QImage img;
     switch (sType) {
     case HORIZONTAL:
@@ -53,8 +54,11 @@ void StitchDialog::onSaveButtonClicked()
 
     QImageWriter imageWriter(savePath);
     if(imageWriter.write(img)){
+
+        qApp->restoreOverrideCursor();
         QMessageBox::about(this, "finish",  " image saved "+savePath);
     }else{
+        qApp->restoreOverrideCursor();
         QMessageBox::about(this, "finish",  imageWriter.errorString());
     }
 
@@ -67,6 +71,10 @@ void StitchDialog::onBrowseButtonClicked()
     QString *selectedFilter = new QString();
     QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"), dir,
                                tr("JPG(*.jpg);;PNG(*.png);;BMP(*.bmp)"), selectedFilter);
+
+    if(fileName.isEmpty())
+        return;
+
 
     bool validFormat = true;
     IMAGEFORMAT selectedFormat;
@@ -89,8 +97,8 @@ void StitchDialog::onBrowseButtonClicked()
 
 void StitchDialog::onProgresChanged(int maximum, int value)
 {
-    //ui->stitchProgressBar->setMaximum(maximum);
-    //ui->stitchProgressBar->setValue(value);
+    ui->progressBar->setMaximum(maximum);
+    ui->progressBar->setValue(value);
 }
 
 void StitchDialog::setBgColor(const QColor &value)
