@@ -64,7 +64,7 @@
          </font>
         </property>
         <property name="text">
-         <string>Save Filename</string>
+         <string>Save filename</string>
         </property>
        </widget>
       </item>

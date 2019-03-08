@@ -91,14 +91,14 @@
       <item>
        <widget class="QPushButton" name="hStitchButton">
         <property name="text">
-         <string>Horizontal Stitch </string>
+         <string>Horizontal stitch </string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="vStitchButton">
         <property name="text">
-         <string>Vertical Stitch </string>
+         <string>Vertical stitch </string>
         </property>
        </widget>
       </item>
@@ -151,7 +151,7 @@
   </widget>
   <action name="actionAddImages">
    <property name="text">
-    <string>Add Images</string>
+    <string>Add images</string>
    </property>
    <property name="toolTip">
     <string>add multiple images to list</string>
@@ -159,7 +159,7 @@
   </action>
   <action name="actionRemoveImages">
    <property name="text">
-    <string>Remove Images</string>
+    <string>Remove images</string>
    </property>
    <property name="toolTip">
     <string>remove images</string>
@@ -167,7 +167,7 @@
   </action>
   <action name="actionMoveUp">
    <property name="text">
-    <string>Move Up</string>
+    <string>Move up</string>
    </property>
    <property name="toolTip">
     <string>move selected image to up</string>
@@ -175,7 +175,7 @@
   </action>
   <action name="actionMoveDown">
    <property name="text">
-    <string>Move Down</string>
+    <string>Move down</string>
    </property>
    <property name="toolTip">
     <string>move selecetd image to down</string>
