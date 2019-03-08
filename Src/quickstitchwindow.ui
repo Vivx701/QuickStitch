@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>816</width>
+    <height>643</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>816</width>
+    <height>643</height>
+   </size>
   </property>
   <property name="contextMenuPolicy">
    <enum>Qt::NoContextMenu</enum>
@@ -17,81 +23,84 @@
    <string>Quick Stitch</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout_2">
+   <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout">
+     <widget class="QListWidget" name="imageListWidget">
+      <property name="frameShape">
+       <enum>QFrame::Box</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
+      <property name="dragEnabled">
+       <bool>false</bool>
+      </property>
+      <property name="dragDropMode">
+       <enum>QAbstractItemView::NoDragDrop</enum>
+      </property>
+      <property name="defaultDropAction">
+       <enum>Qt::CopyAction</enum>
+      </property>
+      <property name="alternatingRowColors">
+       <bool>false</bool>
+      </property>
+      <property name="selectionMode">
+       <enum>QAbstractItemView::SingleSelection</enum>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>100</width>
+        <height>100</height>
+       </size>
+      </property>
+      <property name="movement">
+       <enum>QListView::Static</enum>
+      </property>
+      <property name="flow">
+       <enum>QListView::TopToBottom</enum>
+      </property>
+      <property name="resizeMode">
+       <enum>QListView::Adjust</enum>
+      </property>
+      <property name="viewMode">
+       <enum>QListView::ListMode</enum>
+      </property>
+      <property name="uniformItemSizes">
+       <bool>true</bool>
+      </property>
+      <property name="selectionRectVisible">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QListWidget" name="imageListWidget">
-        <property name="frameShape">
-         <enum>QFrame::Box</enum>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
         </property>
-        <property name="frameShadow">
-         <enum>QFrame::Plain</enum>
-        </property>
-        <property name="dragEnabled">
-         <bool>false</bool>
-        </property>
-        <property name="dragDropMode">
-         <enum>QAbstractItemView::NoDragDrop</enum>
-        </property>
-        <property name="defaultDropAction">
-         <enum>Qt::CopyAction</enum>
-        </property>
-        <property name="alternatingRowColors">
-         <bool>false</bool>
-        </property>
-        <property name="selectionMode">
-         <enum>QAbstractItemView::SingleSelection</enum>
-        </property>
-        <property name="iconSize">
+        <property name="sizeHint" stdset="0">
          <size>
-          <width>100</width>
-          <height>100</height>
+          <width>40</width>
+          <height>20</height>
          </size>
         </property>
-        <property name="movement">
-         <enum>QListView::Static</enum>
-        </property>
-        <property name="flow">
-         <enum>QListView::TopToBottom</enum>
-        </property>
-        <property name="resizeMode">
-         <enum>QListView::Adjust</enum>
-        </property>
-        <property name="viewMode">
-         <enum>QListView::ListMode</enum>
-        </property>
-        <property name="uniformItemSizes">
-         <bool>true</bool>
-        </property>
-        <property name="selectionRectVisible">
-         <bool>true</bool>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="hStitchButton">
+        <property name="text">
+         <string>Horizontal stitch </string>
         </property>
        </widget>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <item>
-         <spacer name="horizontalSpacer">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <widget class="QPushButton" name="stitchButton">
-          <property name="text">
-           <string>Stitch</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
+       <widget class="QPushButton" name="vStitchButton">
+        <property name="text">
+         <string>Vertical stitch </string>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -101,7 +110,7 @@
    <property name="minimumSize">
     <size>
      <width>0</width>
-     <height>40</height>
+     <height>0</height>
     </size>
    </property>
    <property name="contextMenuPolicy">
@@ -138,10 +147,11 @@
    <addaction name="actionRemoveImages"/>
    <addaction name="actionMoveUp"/>
    <addaction name="actionMoveDown"/>
+   <addaction name="actionBackground_color"/>
   </widget>
   <action name="actionAddImages">
    <property name="text">
-    <string>Add Images</string>
+    <string>Add images</string>
    </property>
    <property name="toolTip">
     <string>add multiple images to list</string>
@@ -149,7 +159,7 @@
   </action>
   <action name="actionRemoveImages">
    <property name="text">
-    <string>Remove Images</string>
+    <string>Remove images</string>
    </property>
    <property name="toolTip">
     <string>remove images</string>
@@ -157,7 +167,7 @@
   </action>
   <action name="actionMoveUp">
    <property name="text">
-    <string>Move Up</string>
+    <string>Move up</string>
    </property>
    <property name="toolTip">
     <string>move selected image to up</string>
@@ -165,10 +175,15 @@
   </action>
   <action name="actionMoveDown">
    <property name="text">
-    <string>Move Down</string>
+    <string>Move down</string>
    </property>
    <property name="toolTip">
     <string>move selecetd image to down</string>
+   </property>
+  </action>
+  <action name="actionBackground_color">
+   <property name="text">
+    <string>Background color</string>
    </property>
   </action>
  </widget>

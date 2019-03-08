@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui concurrent
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -26,14 +26,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
     imagestitcher.cpp \
-    stitchdialog.cpp \
-    quickstitchwindow.cpp
+    quickstitchwindow.cpp \
+    stitchdialog.cpp
 
 HEADERS += \
     imagestitcher.h \
-    stitchdialog.h \
-    quickstitchwindow.h
+    quickstitchwindow.h \
+    stitchdialog.h
 
 FORMS += \
-    stitchdialog.ui \
-    quickstitchwindow.ui
+    quickstitchwindow.ui \
+    stitchdialog.ui
+
+RESOURCES += \
+    resources.qrc

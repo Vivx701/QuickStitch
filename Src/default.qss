@@ -1,0 +1,49 @@
+#QuickStitchWindow QToolButton{
+    border-radius:0px;
+    border:1px solid #dcdcdc;
+    color:#666666;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:10px 10px;
+    background-color: qlineargradient(spread:pad, x1:0.308, y1:0.21, x2:1, y2:0.994318, stop:0 rgba(255, 255, 255, 255), stop:0.672316 rgba(237, 237, 237, 255));
+}
+
+#QuickStitchWindow QToolButton:hover{
+    border-style: solid;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    border-style: solid;
+    color:#666666;
+    background-color: #fbfcfc;
+}
+
+#QuickStitchWindow QToolBar {
+
+    background-color:  #34495e ;
+    spacing: 0px;
+    padding: 10px 10px;
+}
+
+
+
+#hStitchButton, #vStitchButton, #saveButton, #cancelButton{
+    border: 1px solid #bbb;
+    background-color: qlineargradient(spread:pad, x1:0.308, y1:0.21, x2:1, y2:0.994318, stop:0 rgba(255, 255, 255, 255), stop:0.672316 rgba(237, 237, 237, 255));
+    color:  #273746;
+    padding:10px 24px ;
+}
+
+ #browseButton{
+    border: 1px solid #bbb;
+    background-color: qlineargradient(spread:pad, x1:0.308, y1:0.21, x2:1, y2:0.994318, stop:0 rgba(255, 255, 255, 255), stop:0.672316 rgba(237, 237, 237, 255));
+    color:  #273746;
+    padding:6px 24px ;
+
+}
+#hStitchButton:hover, #vStitchButton:hover, #saveButton:hover, #browseButton:hover, #cancelButton:hover{
+     background-color: #fbfcfc
+}
+
+

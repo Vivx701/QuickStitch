@@ -1,156 +1,117 @@
-#include <QColorDialog>
-#include <QPalette>
-#include <QFileDialog>
-#include <QImageWriter>
-#include <QMessageBox>
-#include <QDebug>
 #include "stitchdialog.h"
 #include "ui_stitchdialog.h"
+#include <QFileDialog>
+#include <QStandardPaths>
+#include <QDir>
+#include <QDebug>
+#include <QMessageBox>
+#include <QImageWriter>
+
 
 StitchDialog::StitchDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::StitchDialog), bgColor("#FBFBFC"), finalImageSize(0, 0)
+    QDialog(parent), sType(HORIZONTAL),
+    ui(new Ui::StitchDialog)
 {
     ui->setupUi(this);
+    stitcher = new ImageStitcher(this);
+    connect(ui->browseButton, SIGNAL(clicked(bool)), SLOT(onBrowseButtonClicked()));
+    connect(ui->saveButton, SIGNAL(clicked(bool)), SLOT(onSaveButtonClicked()));
+    connect(stitcher, SIGNAL(progressChanged(int,int)), SLOT(onProgresChanged(int,int)));
 
-    connect(ui->chooseColorButton, SIGNAL(clicked(bool)), this, SLOT(onChooseColor()));
-    connect(ui->filenameChoose, SIGNAL(clicked(bool)), this, SLOT(onChooseFileName()));
-    connect(ui->typeSelection, SIGNAL(currentTextChanged(QString)), this, SLOT(onTypeSelected(QString)));
-    connect(ui->startButton, SIGNAL(clicked(bool)) , this, SLOT(onStartButtonClicked()));
-    ui->bgColorValue->setText(bgColor.name().toUpper());
-    selectedType = ui->typeSelection->currentText();
-
-    m_stitcher = new ImageStitcher(this);
-    connect(m_stitcher, SIGNAL(progressChanged(int,int)), this, SLOT(onProgressChange(int,int)));
-    connect(m_stitcher, SIGNAL(finalImageSizeChanged(QSize)), this, SLOT(onFinalImageSizeChanged(QSize)));
-    connect(ui->bgColorValue, SIGNAL(textEdited(QString)), this, SLOT(onBgColorValueTextChanged(QString)));
-    updateDetails();
 }
 
 void StitchDialog::addImages(ImageList imgList)
 {
-    m_stitcher->addImages(imgList);
-
+    stitcher->addImages(imgList);
 }
-
-void StitchDialog::addImage(QImage img)
-{
-    m_stitcher->addImage(img);
-}
-
 
 StitchDialog::~StitchDialog()
 {
-    m_stitcher->deleteLater();
     delete ui;
 }
 
-void StitchDialog::onBgColorValueTextChanged(const QString color)
+void StitchDialog::onSaveButtonClicked()
 {
-    ui->bgColorValue->setText(color.toUpper());
-    ui->colorViewer->setAutoFillBackground(true);
-    QPalette bgColorPalette = ui->colorViewer->palette();
-    bgColor = QColor(color);
-    bgColorPalette.setColor(QPalette::Background, bgColor);
-    ui->colorViewer->setPalette(bgColorPalette);
-    updateDetails();
+    QString savePath = QDir::cleanPath(ui->savePathlineEdit->text());
+    if(savePath.isEmpty()){
 
-}
-
-void StitchDialog::onChooseColor()
-{
-    QColor selectedColor = QColorDialog::getColor(bgColor, this, "Choose Color");
-    if(selectedColor.isValid()){
-        bgColor = selectedColor;
-        ui->bgColorValue->setText(bgColor.name());
-    }
-
-}
-
-void StitchDialog::onChooseFileName()
-{
-    QString *selectedFilter = new QString();
-    QString fileName =  QFileDialog::getSaveFileName(this, "Save Image", "stich","jpg(*.jpg);;png(*.png);;", selectedFilter);
-    if(fileName.isEmpty()){
+        QMessageBox::about(this, "failed to save",  "Empty file name to save");
         return;
     }
-    qDebug()<<selectedFilter->toLatin1();
-    QString selExt = ".jpg";
-    if(selectedFilter->compare("jpg(*.jpg)") == 0){
-        selExt = ".jpg";
-    }else if(selectedFilter->compare("png(*.png)") == 0){
-        selExt = ".png";
-    }
 
-    if(!fileName.endsWith(selExt)){
-
-        saveFileName = fileName+selExt;
-    }
-
-
-    ui->selectedPath->setText(saveFileName);
-    updateDetails();
-}
-
-void StitchDialog::onTypeSelected(QString type)
-{
-     selectedType = type;
-     updateDetails();
-}
-
-void StitchDialog::updateDetails()
-{
-
-    QString details = "Path: %1\n\n\n"
-                      "Background: %2\n"
-                      "Type: %3\n"
-                      "Size: %4\n"
-                      "Count: %5";
-    QString size = QString::number(finalImageSize.width())+" X "+QString::number(finalImageSize.height());
-    ui->outputLabel->setText(details.arg(saveFileName).arg(bgColor.name().toUpper()).arg(selectedType).arg(size).arg(QString::number(m_stitcher->getImageList().length())));
-
-}
-
-
-
-void StitchDialog::onProgressChange(int maximum, int value)
-{
-
-    ui->stitchProgressBar->setMaximum(maximum);
-    ui->stitchProgressBar->setValue(value);
-}
-
-void StitchDialog::onFinalImageSizeChanged(QSize size)
-{
-
-    finalImageSize = size;
-    updateDetails();
-}
-
-
-
-void StitchDialog::onStartButtonClicked()
-{
-
-
-    if(saveFileName.isEmpty()){
-       QMessageBox::information(this, "File name is empty", "Please select a location and name to save the image.<br/>"
-                                                            "Press File button to choose file path.", QMessageBox::Ok);
-       return;
-    }
+    qApp->setOverrideCursor(Qt::WaitCursor);
     QImage img;
-    if(selectedType == "Horizontal"){
-       img = m_stitcher->horizontalStitch(bgColor);
-    }else if(selectedType == "Vertical"){
-        img = m_stitcher->verticalStitch(bgColor);
+    switch (sType) {
+    case HORIZONTAL:
+        img = stitcher->horizontalStitch(bgColor);
+        break;
+    case VERTICAL:
+        img = stitcher->verticalStitch(bgColor);
+        break;
+    default:
+        break;
     }
 
-
-    QImageWriter   imageWriter( saveFileName );
+    QImageWriter imageWriter(savePath);
     if(imageWriter.write(img)){
-        QMessageBox::about(this, "finish",  " image saved "+ saveFileName);
+
+        qApp->restoreOverrideCursor();
+        QMessageBox::about(this, "finish",  " image saved "+savePath);
     }else{
+        qApp->restoreOverrideCursor();
         QMessageBox::about(this, "finish",  imageWriter.errorString());
     }
 
+}
+
+void StitchDialog::onBrowseButtonClicked()
+{
+
+    QString dir = QDir::cleanPath(QStandardPaths::writableLocation(QStandardPaths::PicturesLocation) + QDir::separator() + "image");
+    QString *selectedFilter = new QString();
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"), dir,
+                               tr("JPG(*.jpg);;PNG(*.png);;BMP(*.bmp)"), selectedFilter);
+
+    if(fileName.isEmpty())
+        return;
+
+
+    bool validFormat = true;
+    IMAGEFORMAT selectedFormat;
+    if(selectedFilter->toLatin1() == "JPG(*.jpg)"){
+        selectedFormat = IMAGEFORMAT::JPG;
+    }else if(selectedFilter->toLatin1() == "PNG(*.png)"){
+        selectedFormat = IMAGEFORMAT::PNG;
+    }else if(selectedFilter->toLatin1() == "BMP(*.bmp)"){
+        selectedFormat = IMAGEFORMAT::BMP;
+    }else{
+        validFormat = false;
+    }
+
+    if(!validFormat){
+
+        QMessageBox::about(this, "Not a valid format", "Please select avalid format");
+    }
+    ui->savePathlineEdit->setText(fileName);
+}
+
+void StitchDialog::onProgresChanged(int maximum, int value)
+{
+    ui->progressBar->setMaximum(maximum);
+    ui->progressBar->setValue(value);
+}
+
+void StitchDialog::setBgColor(const QColor &value)
+{
+    bgColor = value;
+}
+
+void StitchDialog::setStitchType(StitchType type)
+{
+    sType = type;
+}
+
+void StitchDialog::on_cancelButton_clicked()
+{
+    this->reject();
 }

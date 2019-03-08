@@ -3,9 +3,7 @@
 
 #include <QDialog>
 #include <QColor>
-#include <QSize>
 #include "imagestitcher.h"
-
 namespace Ui {
 class StitchDialog;
 }
@@ -17,26 +15,25 @@ class StitchDialog : public QDialog
 public:
     explicit StitchDialog(QWidget *parent = 0);
     void addImages(ImageList imgList);
-    void addImage(QImage img);
     ~StitchDialog();
 
+    void setBgColor(const QColor &value);
+    void setStitchType(StitchType type);
+
 private slots:
-    void onBgColorValueTextChanged(const QString color);
-    void onChooseColor();
-    void onChooseFileName();
-    void onTypeSelected(QString type);
-    void updateDetails();
-    void onProgressChange(int maximum, int value);
-    void onFinalImageSizeChanged(QSize size);
-    void onStartButtonClicked();
+    void onSaveButtonClicked();
+    void onBrowseButtonClicked();
+    void onProgresChanged(int maximum, int value);
+
+
+    void on_cancelButton_clicked();
 
 private:
     Ui::StitchDialog *ui;
+    ImageStitcher *stitcher;
     QColor bgColor;
-    QString saveFileName;
-    QString selectedType;
-    QSize finalImageSize;
-    ImageStitcher *m_stitcher;
+    StitchType sType;
+
 };
 
 #endif // STITCHDIALOG_H
