@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=QuickStitch
+GenericName=Image stitch
+Comment=Simple image stitching program
+Exec=QuickStitch 
+Icon=QuickStitch 
+Terminal=false
+Type=Application
+MimeType=text/plain;
+Categories=Qt;Utility;
+X-KDE-StartupNotify=false

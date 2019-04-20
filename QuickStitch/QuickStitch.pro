@@ -40,3 +40,26 @@ FORMS += \
 
 RESOURCES += \
     resources.qrc
+
+
+unix {
+
+    #VARIABLES
+    isEmpty(PREFIX) {
+        PREFIX = /usr
+    }
+    BINDIR = $$PREFIX/bin
+    DATADIR =$$PREFIX/share
+
+
+    target.path =$$BINDIR
+    INSTALLS += target
+
+    icon.path = $$DATADIR/icons/hicolor/scalable/apps
+    icon.files += ./data/icons/$${TARGET}.svg
+    INSTALLS += icon
+
+    desktop.path = $$DATADIR/applications
+    desktop.files += ./data/$${TARGET}.desktop
+    INSTALLS += desktop
+}
