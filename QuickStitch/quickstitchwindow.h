@@ -35,6 +35,7 @@ private slots:
     void onChooseColor();
     void startStich(ImageList imgList, StitchType type);
     void showErrorMessage(QString heading, QString message);
+    void showAbout();
 
 signals:
     void showError(QString heading, QString message);

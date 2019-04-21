@@ -1,4 +1,5 @@
 #include "quickstitchwindow.h"
+#include "strings.h"
 #include <QApplication>
 #include <QFile>
 #include <QMessageBox>
@@ -6,6 +7,8 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    a.setApplicationName(APPLICATION_NAME);
+    a.setApplicationVersion(VERSION);
 
     QFile styleSheet(":/default.qss");
     if (!styleSheet.open(QIODevice::ReadOnly | QIODevice::Text)){
@@ -16,6 +19,8 @@ int main(int argc, char *argv[])
         a.setStyleSheet(QString::fromLocal8Bit(styleSheet.readAll()));
     }
     QuickStitchWindow window;
+    window.setWindowTitle(a.applicationName());
+    window.setWindowIcon(QIcon(":/data/icons/QuickStitch.svg"));
     window.show();
 
     return a.exec();

@@ -28,6 +28,10 @@
   <property name="windowTitle">
    <string>Stitch Dialog</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/data/icons/QuickStitch.svg</normaloff>:/data/icons/QuickStitch.svg</iconset>
+  </property>
   <property name="modal">
    <bool>true</bool>
   </property>
@@ -176,6 +180,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

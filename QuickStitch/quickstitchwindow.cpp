@@ -5,6 +5,8 @@
 #include <QDateTime>
 #include <QPixmap>
 #include <QImageWriter>
+
+#include "about.h"
 #include "quickstitchwindow.h"
 #include "ui_quickstitchwindow.h"
 #include "stitchdialog.h"
@@ -22,6 +24,7 @@ QuickStitchWindow::QuickStitchWindow(QWidget *parent) :
     connect(ui->hStitchButton, SIGNAL(clicked(bool)), this, SLOT(onHStitchButtonClicked()));
     connect(ui->vStitchButton, SIGNAL(clicked(bool)), this, SLOT(onVStitchButtonClicked()));
     connect(ui->actionBackground_color, SIGNAL(triggered(bool)), this, SLOT(onChooseColor()));
+    connect(ui->aboutButton, SIGNAL(clicked(bool)), this, SLOT(showAbout()));
     connect(this, SIGNAL(showError(QString,QString)), this, SLOT(showErrorMessage(QString,QString)));
 
 }
@@ -176,6 +179,13 @@ void QuickStitchWindow::showErrorMessage(QString heading, QString message)
     msgBox.setDefaultButton(QMessageBox::Ok);
     int ret = msgBox.exec();
 
+}
+
+void QuickStitchWindow::showAbout()
+{
+    About about;
+    about.setWindowTitle("About");
+    about.exec();
 }
 
 

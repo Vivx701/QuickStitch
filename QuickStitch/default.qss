@@ -28,7 +28,7 @@
 
 
 
-#hStitchButton, #vStitchButton, #saveButton, #cancelButton{
+#hStitchButton, #vStitchButton, #saveButton, #cancelButton, #aboutButton{
     border: 1px solid #bbb;
     background-color: qlineargradient(spread:pad, x1:0.308, y1:0.21, x2:1, y2:0.994318, stop:0 rgba(255, 255, 255, 255), stop:0.672316 rgba(237, 237, 237, 255));
     color:  #273746;
@@ -42,7 +42,7 @@
     padding:6px 24px ;
 
 }
-#hStitchButton:hover, #vStitchButton:hover, #saveButton:hover, #browseButton:hover, #cancelButton:hover{
+#hStitchButton:hover, #vStitchButton:hover, #saveButton:hover, #browseButton:hover, #cancelButton:hover, #aboutButton:hover{
      background-color: #fbfcfc
 }
 

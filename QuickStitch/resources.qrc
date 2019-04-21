@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>default.qss</file>
+        <file>data/icons/QuickStitch.svg</file>
     </qresource>
 </RCC>
